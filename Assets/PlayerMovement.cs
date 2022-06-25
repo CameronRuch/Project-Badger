@@ -39,9 +39,37 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        /*
+                //Jump
+        if (Input.GetButtonDown("Jump") && isGrounded && pressedJump == false && onLadder == false && isDead == false)
+        {
+            velocity.y = Mathf.Sqrt(jumpHight * -2f * gravity);
+            pressedJump = true;
+            jumping.Play();
+            setPitch();
+            jumpNum++;
+        }
+        */
+
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
         
     }
 }
+
+/*
+
+    //dash
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash == true && x > 0f || Input.GetKeyDown(KeyCode.LeftShift) && canDash == true && x < 0f || Input.GetKeyDown(KeyCode.LeftShift) && canDash == true && z > 0f || Input.GetKeyDown(KeyCode.LeftShift) && canDash == true && z < 0f)
+            {
+                fillDashImage.fillAmount = 1;
+                duration4 = 1;
+                DashEffect.Play();
+                canDash = false;
+                sound.clip = dashNoise;
+                sound.Play();
+                StartCoroutine(Dash());
+                StartCoroutine(DashRecharge());
+            }
+*/
