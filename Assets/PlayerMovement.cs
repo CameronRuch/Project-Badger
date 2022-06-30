@@ -7,17 +7,20 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController controller;
 
+    [Header("PLayer Settings")]
     public float speed = 12f;
     public float sneakSpeed = 6f;
     public float gravity = -9.81f;
     public float jumpHeight = 10f;
 
+    [Header("GroundCheck")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
     private float canJump = 0f;
 
+    [Header("Leaning")]
     public Transform LeanPivot;
     private float currentLean;
     private float targetLean;
@@ -34,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateLeaning();
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -48,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-
+        //Jump with delay
         if(Input.GetKey("space") && isGrounded && Time.time > canJump)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -58,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+
+        //Leaning (i know its kinda ugly but it works)
+        CalculateLeaning();
 
         if (Input.GetKey("left shift") && isGrounded)
         {
