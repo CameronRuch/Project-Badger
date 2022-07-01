@@ -12,12 +12,12 @@ public class Crouch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             PlayerHeight.height = crouchHeight;
         }
 
-        if (Input.GetKeyUp(KeyCode.C))
+        if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             PlayerHeight.height = normalheight;
         }

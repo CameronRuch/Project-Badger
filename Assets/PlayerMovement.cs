@@ -27,8 +27,6 @@ public class PlayerMovement : MonoBehaviour
     public float leanAngle;
     public float leanSmoothing;
     private float leanVelocity;
-    private bool isLeaningLeft;
-    private bool isLeaningRight;
 
     Vector3 velocity;
     bool isGrounded;
@@ -62,8 +60,6 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
 
-        //Leaning (i know its kinda ugly but it works)
-        CalculateLeaning();
 
         if (Input.GetKey("left shift") && isGrounded)
         {
@@ -72,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move(move * speed * Time.deltaTime);
         }
+
+        //Leaning (i know its kinda ugly but it works)
+        CalculateLeaning();
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
